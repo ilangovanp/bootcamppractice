@@ -1,4 +1,4 @@
-package seleniumcamp.Learningseleniumbcamp;
+package seleniumcamp.Learningseleniumcamp;
 
 import java.time.Duration;
 

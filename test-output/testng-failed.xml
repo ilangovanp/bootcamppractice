@@ -3,11 +3,11 @@
 <suite guice-stage="DEVELOPMENT" name="Failed suite [Default suite]">
   <test name="Default test(failed)">
     <classes>
-      <class name="seleniumcamp.Learningseleniumbcamp.CreateOpportunitywithoutmandatoryfields">
+      <class name="seleniumcamp.Learningseleniumbcamp.S09_7_Editaccounts">
         <methods>
-          <include name="createOpportunity"/>
+          <include name="editaccounts"/>
         </methods>
-      </class> <!-- seleniumcamp.Learningseleniumbcamp.CreateOpportunitywithoutmandatoryfields -->
+      </class> <!-- seleniumcamp.Learningseleniumbcamp.S09_7_Editaccounts -->
     </classes>
   </test> <!-- Default test(failed) -->
 </suite> <!-- Failed suite [Default suite] -->
