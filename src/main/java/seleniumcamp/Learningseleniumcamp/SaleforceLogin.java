@@ -11,23 +11,36 @@ import org.openqa.selenium.chrome.ChromeOptions;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 import org.testng.Assert;
+import org.testng.annotations.AfterTest;
+import org.testng.annotations.BeforeTest;
 import org.testng.annotations.Test;
 
 import io.github.bonigarcia.wdm.WebDriverManager;
 
 public class SaleforceLogin {
-    
-	@Test
-	public void accountcreation() {
-		// TODO Auto-generated method stub
+	public WebDriver driver;
+	@BeforeTest
+	public void browserinvoke() {
 		WebDriverManager.chromedriver().setup();
-
 		ChromeOptions options = new ChromeOptions();
 		options.addArguments("--remote-allow-origins=*");
 		options.addArguments("--disable-notifications");
-		WebDriver driver = new ChromeDriver(options);
-		driver.get("https://login.salesforce.com");
+		options.addArguments("--incognito");
+		
+		driver = new ChromeDriver(options);
+		driver.get("https://qeagle-dev-ed.lightning.force.com/lightning/page/home");
 		driver.manage().window().maximize();
+		driver.manage().deleteAllCookies();	
+		
+	}
+	
+
+	
+	
+	@Test
+	public void accountcreation() {
+		// TODO Auto-generated method stub
+		
 
 		driver.findElement(By.id("username")).sendKeys("hari.radhakrishnan@qeagle.com");
 		driver.findElement(By.id("password")).sendKeys("Leaf@1234");
@@ -64,6 +77,12 @@ public class SaleforceLogin {
 		 System.out.println(av);
 		 
 		 Assert.assertEquals(av, "Account \"Ilangovan\" was created");
+	}
+	
+	@AfterTest
+	public void teardown() {
+		
+		driver.quit();
 	}
 	}
 

@@ -1,13 +1,14 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd">
-<suite guice-stage="DEVELOPMENT" name="Failed suite [Default suite]">
-  <test name="Default test(failed)">
+<!DOCTYPE suite SYSTEM "https://testng.org/testng-1.0.dtd">
+<suite name="Failed suite [Default suite]" guice-stage="DEVELOPMENT">
+  <test thread-count="5" name="Default test(failed)">
     <classes>
-      <class name="seleniumcamp.Learningseleniumbcamp.S09_7_Editaccounts">
+      <class name="seleniumcamp.Learningseleniumcamp.S09_23_Create_Individuals_without_mandatory_fields">
         <methods>
-          <include name="editaccounts"/>
+          <include name="browserinvoke"/>
+          <include name="individuals"/>
         </methods>
-      </class> <!-- seleniumcamp.Learningseleniumbcamp.S09_7_Editaccounts -->
+      </class> <!-- seleniumcamp.Learningseleniumcamp.S09_23_Create_Individuals_without_mandatory_fields -->
     </classes>
   </test> <!-- Default test(failed) -->
 </suite> <!-- Failed suite [Default suite] -->

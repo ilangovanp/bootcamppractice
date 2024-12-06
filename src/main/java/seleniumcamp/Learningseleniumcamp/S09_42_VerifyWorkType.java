@@ -10,23 +10,37 @@ import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.chrome.ChromeOptions;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
+import org.testng.annotations.AfterTest;
+import org.testng.annotations.BeforeTest;
+import org.testng.annotations.Test;
 import org.openqa.selenium.interactions.Actions;
 import io.github.bonigarcia.wdm.WebDriverManager;
 
 public class S09_42_VerifyWorkType {
-
-	public static void main(String[] args) {
-		
-
-//1) Launch the app
+	
+	
+   public WebDriver driver;
+	
+	@BeforeTest
+	public void browserinvoke() {
 		WebDriverManager.chromedriver().setup();
 		ChromeOptions options = new ChromeOptions();
 		options.addArguments("--remote-allow-origins=*");
 		options.addArguments("--disable-notifications");
-		WebDriver driver = new ChromeDriver(options);
+		options.addArguments("--incognito");
+		
+		driver = new ChromeDriver(options);
 		driver.get("https://qeagle-dev-ed.lightning.force.com/lightning/page/home");
 		driver.manage().window().maximize();
-		driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(20));
+		driver.manage().deleteAllCookies();	
+		
+	}
+	
+	
+	@Test
+	public void WorkType() {
+		
+
 //2) Click Login
 //3) Login with the credentials
 		driver.findElement(By.id("username")).sendKeys("hari.radhakrishnan@qeagle.com");
@@ -71,6 +85,11 @@ public class S09_42_VerifyWorkType {
 			
 		
 
+	}
+	@AfterTest
+	public void teardown() {
+		
+		driver.quit();
 	}
 
 }

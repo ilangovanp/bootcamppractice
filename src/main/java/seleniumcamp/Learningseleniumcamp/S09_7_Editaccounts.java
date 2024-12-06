@@ -12,24 +12,35 @@ import org.openqa.selenium.chrome.ChromeOptions;
 import org.openqa.selenium.interactions.Actions;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
+import org.testng.annotations.AfterTest;
+import org.testng.annotations.BeforeTest;
 import org.testng.annotations.Test;
 
 import io.github.bonigarcia.wdm.WebDriverManager;
 
 public class S09_7_Editaccounts {
 	
+public WebDriver driver;
 	
-	public static void main(String[] args) throws InterruptedException {
-		
-		//1) Launch the app
+	@BeforeTest
+	public void browserinvoke() {
 		WebDriverManager.chromedriver().setup();
-
 		ChromeOptions options = new ChromeOptions();
 		options.addArguments("--remote-allow-origins=*");
 		options.addArguments("--disable-notifications");
-		WebDriver driver = new ChromeDriver(options);
-		driver.get("https://login.salesforce.com");
+		options.addArguments("--incognito");
+		
+		 driver = new ChromeDriver(options);
+		driver.get("https://qeagle-dev-ed.lightning.force.com/lightning/page/home");
 		driver.manage().window().maximize();
+		driver.manage().deleteAllCookies();	
+		
+	}
+	
+	@Test
+	public void editacc() throws InterruptedException {
+		
+	
 		
 		//2) Click Login
         //3) Login with the credentials
@@ -46,11 +57,14 @@ public class S09_7_Editaccounts {
 		driver.findElement(By.xpath("//button[text()='View All']")).click();
 		driver.findElement(By.xpath("//p[text()='Sales']")).click();
 		//click on accounts
+		
+		WebDriverWait  wait2 = new WebDriverWait(driver,Duration.ofSeconds(50));
+		wait2.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//a[@title='Accounts']")));
 		WebElement ab = driver.findElement(By.xpath("//a[@title='Accounts']"));
 		JavascriptExecutor js = (JavascriptExecutor) driver;
 		js.executeScript("arguments[0].click();", ab);
 		//6) Search for the Account Using the unique account name created by you
-		driver.findElement(By.xpath("//input[@type=\"search\" and @placeholder=\"Search this list...\"]")).sendKeys("Indhulekha J",Keys.ENTER);
+		driver.findElement(By.xpath("//input[@type=\"search\" and @placeholder=\"Search this list...\"]")).sendKeys("Ilangovan P",Keys.ENTER);
 		
 	//7) Click on the displayed Account Dropdown icon and select Edit
 		//WebElement dp=driver.findElement(By.xpath("//span[text()='Show Actions']/parent::span"));
@@ -58,22 +72,26 @@ public class S09_7_Editaccounts {
 		 * Actions a = new Actions(driver); a.moveToElement(dp).build().perform();
 		 */
 		
-		 Actions action = new Actions(driver);
-         action.moveByOffset(0,0).click().build().perform();
+		/*
+		 * Actions action = new Actions(driver);
+		 * action.moveByOffset(0,0).click().build().perform();
+		 */
 		
 			
-			  WebDriverWait wait1 = new WebDriverWait(driver,Duration.ofSeconds(20));
-			  wait1.until(ExpectedConditions.refreshed(ExpectedConditions.
-			  presenceOfElementLocated(By.
-			  xpath("//span[text()='Show Actions']/parent::span"))));
+		/*
+		 * WebDriverWait wait3 = new WebDriverWait(driver,Duration.ofSeconds(20));
+		 * wait3.until(ExpectedConditions.refreshed(ExpectedConditions.
+		 * presenceOfElementLocated(By.
+		 * xpath("//span[text()='Show Actions']/parent::span"))));
+		 */
 			 
-		int repeat=0;
-		while(repeat<=3) {
+		
 
-		driver.findElement(By.xpath("//span[text()='Show Actions']/parent::span")).click();
+		//driver.findElement(By.xpath("(//span[text()='Show Actions']/parent::span)[1]")).click();
+		driver.findElement(By.xpath("//span[text()='Show more actions']/parent::span")).click();
 		driver.findElement(By.xpath("//a[@title=\"Edit\"]")).click();
 		Thread.sleep(1000);
-		repeat++; }
+
 		 
 		
 		//8) Select Type as Technology Partner 
@@ -125,17 +143,14 @@ public class S09_7_Editaccounts {
 		}else {
 			System.out.println("failed");
 		}
-				
-
-		
-		
-		
-		
-		
-		
-		
+					
 		
 	}
+	/*
+	 * @AfterTest public void teardown() {
+	 * 
+	 * driver.quit(); }
+	 */
 	
 	
 

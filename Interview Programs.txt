@@ -1,0 +1,20 @@
+1.Prime number or not
+2.Reverse the string
+3.Fibonacci series
+4.Reverse the words in sentence
+5.Reverse the sentence
+6.Swap two numbers
+7.Sort arrays
+8.Sum of Elements in array
+9.Read File
+10.Write file
+11.Palindrome number
+12.Palindrome String
+13.Find duplicates in array
+14.Count occurances of character in string
+15.Count occurances of words in string
+16.Factorial of number
+17.Even and odd digits in number
+18.Extract even and odd numbers in array.
+19.Sort arrays
+20.Largest of three numbers
